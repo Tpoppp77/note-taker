@@ -5,14 +5,13 @@ const express = require("express");
 const app = express();
 const PORT = 8080;
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// app.get("/", function(req, res) {
-//     res.send("Ready to start taking notes?!");
-//   });
+require("./Develop/routes/api-routes")(app);
+require("./Develop/routes/html-routes")(app);
 
-app.listen(PORT, function () {
-    console.log(`Server listening on http://localhost:${PORT}`)
+app.listen(PORT, () => {
+    console.log(`Server listening on http://localhost:${PORT}`);
 });
